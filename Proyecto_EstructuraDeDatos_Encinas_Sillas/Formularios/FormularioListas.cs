@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
 {
@@ -23,7 +24,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
 
         private void Titulo_Click(object sender, EventArgs e)
         {
-            txtBoxTipoMascota.Focus();
+            comboBoxRazas.Focus();
         }
 
         private void Cancelar_Click(object sender, EventArgs e)
@@ -37,7 +38,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
 
         private void RazaDeMascota_Click(object sender, EventArgs e)
         {
-            txtBoxTipoMascota.Focus();
+            comboBoxRazas.Focus();
         }
 
         private void NombreAlimento_Click(object sender, EventArgs e)
@@ -57,7 +58,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
 
         private void Confirmar_Click(object sender, EventArgs e)
         {
-            if (txtBoxNombre.Text == string.Empty || txtBoxTipoMascota.Text == string.Empty || txtBoxPrecio.Text == string.Empty)
+            if (txtBoxNombre.Text == string.Empty || comboBoxRazas.Text == string.Empty || txtBoxPrecio.Text == string.Empty)
             {
                 MessageBox.Show("Necesitas Ingresar todos los datos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -71,7 +72,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
                         Alimento.Existencia = true;
                         Alimento.Precio = validacionPrecio;
                         Alimento.NombreAlimento = txtBoxNombre.Text;
-                        Alimento.RazaMascota = txtBoxTipoMascota.Text;
+                        Alimento.RazaMascota = comboBoxRazas.Text;
                         this.DialogResult = DialogResult.OK;
                     }
                     else
@@ -79,7 +80,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
                         Alimento.Existencia = false;
                         Alimento.Precio = validacionPrecio;
                         Alimento.NombreAlimento = txtBoxNombre.Text;
-                        Alimento.RazaMascota = txtBoxTipoMascota.Text;
+                        Alimento.RazaMascota = comboBoxRazas.Text;
                         this.DialogResult = DialogResult.OK;
                     }
                 }
@@ -92,6 +93,37 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
         public AlimentoParaMascotas AgregarAlimento()
         {
             return Alimento;
+        }
+
+        private void txtBoxPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Metodo para permitir teclas de control
+            // como borrar
+            if (char.IsControl(e.KeyChar))
+                e.Handled = false;
+
+            // Permitir solo dígitos y un separador decimal
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                e.Handled = true;
+
+            // Asegurarse de que solo haya un separador decimal
+            TextBox textBox = (TextBox)sender;
+            if (e.KeyChar == '.' && textBox.Text.Contains("."))
+                e.Handled = true;
+
+            // Obtener el texto después de insertar el carácter
+            string newText = 
+                textBox.Text.Remove(textBox.SelectionStart, textBox.SelectionLength)
+                .Insert(textBox.SelectionStart, e.KeyChar.ToString());
+
+            /* Expresión regular que nos limita solo a poder teclear:
+             * de 0 a 4 Dígitos
+             * y opcionalmente 
+             * 1 Punto seguido de 0 a 2 Dígitos 
+             */
+            if (!Regex.IsMatch(newText, @"^\d{0,4}(\.\d{0,2})?$"))
+                e.Handled = true;
+
         }
     }
 }

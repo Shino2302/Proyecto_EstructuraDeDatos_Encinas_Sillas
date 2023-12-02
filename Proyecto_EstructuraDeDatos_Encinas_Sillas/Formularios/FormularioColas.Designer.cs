@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioColas));
-            txtBoxRaza = new TextBox();
             txtBoxNombre = new TextBox();
             Encargo = new Label();
             Raza = new Label();
@@ -39,18 +38,11 @@
             panel2 = new Panel();
             Confirmar = new Button();
             panel1 = new Panel();
-            txtBoxPendiente = new TextBox();
+            comboBoxRazas = new ComboBox();
+            comboBoxEncargos = new ComboBox();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // txtBoxRaza
-            // 
-            txtBoxRaza.Location = new Point(122, 92);
-            txtBoxRaza.Name = "txtBoxRaza";
-            txtBoxRaza.PlaceholderText = "Raza De La Mascota";
-            txtBoxRaza.Size = new Size(149, 23);
-            txtBoxRaza.TabIndex = 25;
             // 
             // txtBoxNombre
             // 
@@ -157,13 +149,28 @@
             panel1.Size = new Size(110, 101);
             panel1.TabIndex = 14;
             // 
-            // txtBoxPendiente
+            // comboBoxRazas
             // 
-            txtBoxPendiente.Location = new Point(122, 121);
-            txtBoxPendiente.Name = "txtBoxPendiente";
-            txtBoxPendiente.PlaceholderText = "Pendiente Con La Mascota";
-            txtBoxPendiente.Size = new Size(149, 23);
-            txtBoxPendiente.TabIndex = 26;
+            comboBoxRazas.Cursor = Cursors.Hand;
+            comboBoxRazas.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxRazas.FormattingEnabled = true;
+            comboBoxRazas.Items.AddRange(new object[] { "Perro", "Gato", "Hamster", "Loro", "Conejo", "Raton", "Iguana" });
+            comboBoxRazas.Location = new Point(123, 92);
+            comboBoxRazas.MaxDropDownItems = 5;
+            comboBoxRazas.Name = "comboBoxRazas";
+            comboBoxRazas.Size = new Size(149, 23);
+            comboBoxRazas.TabIndex = 27;
+            // 
+            // comboBoxEncargos
+            // 
+            comboBoxEncargos.Cursor = Cursors.Hand;
+            comboBoxEncargos.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxEncargos.FormattingEnabled = true;
+            comboBoxEncargos.Items.AddRange(new object[] { "Baño", "Corte De Pelo", "Corte De Garras", "Lavado De Dientes" });
+            comboBoxEncargos.Location = new Point(123, 127);
+            comboBoxEncargos.Name = "comboBoxEncargos";
+            comboBoxEncargos.Size = new Size(149, 23);
+            comboBoxEncargos.TabIndex = 28;
             // 
             // FormularioColas
             // 
@@ -171,8 +178,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(281, 309);
-            Controls.Add(txtBoxPendiente);
-            Controls.Add(txtBoxRaza);
+            Controls.Add(comboBoxEncargos);
+            Controls.Add(comboBoxRazas);
             Controls.Add(txtBoxNombre);
             Controls.Add(Encargo);
             Controls.Add(Raza);
@@ -189,8 +196,6 @@
         }
 
         #endregion
-
-        private TextBox txtBoxRaza;
         private TextBox txtBoxNombre;
         private Label Encargo;
         private Label Raza;
@@ -200,6 +205,7 @@
         private Panel panel2;
         private Button Confirmar;
         private Panel panel1;
-        private TextBox txtBoxPendiente;
+        private ComboBox comboBoxRazas;
+        private ComboBox comboBoxEncargos;
     }
 }

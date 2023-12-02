@@ -17,6 +17,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
     public partial class Colas : Form
     {
         ColaDeEspera cola = new ColaDeEspera();
+        int idExponencial = 0;
         public Colas()
         {
             InitializeComponent();
@@ -37,10 +38,14 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
         private void Agregar_Click(object sender, EventArgs e)
         {
             FormularioColas formulario = new FormularioColas();
+            MascotasEnEspera mascota = new MascotasEnEspera();
             DialogResult resultado = formulario.ShowDialog();
             if (resultado == DialogResult.OK)
             {
-                cola.IngresarEnCola(formulario.AgregarEnCola());
+                idExponencial++;
+                mascota = formulario.AgregarEnCola();
+                mascota.ID = idExponencial;
+                cola.IngresarEnCola(mascota);
                 formulario.Close();
                 Reload();
             }
@@ -67,16 +72,9 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
-            if (cola.ColaVacia())
-            {
-                MessageBox.Show("La Cola Se Encuentra Vacía!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                MascotasEnEspera mascotaLiberada = cola.Pop();
-                MessageBox.Show($"Raza: {mascotaLiberada.Raza}, Nombre: {mascotaLiberada.Nombre} Liberado", "Eliminado De Cola", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Reload();
-            }
+            MascotasEnEspera mascotaLiberada = cola.Pop();
+            MessageBox.Show($"Raza: {mascotaLiberada.Raza}, Nombre: {mascotaLiberada.Nombre} Liberado", "Eliminado De Cola", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            Reload();
         }
 
         private void OrdenarAscendente_Click(object sender, EventArgs e)
@@ -89,7 +87,8 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             {
                 cola.OrdenarDeMenorAMayor();
                 Refresh();
-                MessageBox.Show("Cola re-organizada", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cola re-organizada, por el precio más bajo al más alto",
+                    "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -103,7 +102,21 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             {
                 cola.OrdenarDeMayorAMenor();
                 Refresh();
-                MessageBox.Show("Cola re-organizada", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cola re-organizada, por el precio más alto al más bajo",
+                    "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Modificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridContendor_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gridContendor.Rows.Count > 0)
+            {
+                Eliminar.Enabled = true;
             }
         }
     }

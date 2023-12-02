@@ -14,7 +14,6 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
     public partial class FormularioColas : Form
     {
         MascotasEnEspera mascota = new MascotasEnEspera();
-        int idIncremental = 0;
         public FormularioColas()
         {
             InitializeComponent();
@@ -41,17 +40,17 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
 
         private void Raza_Click(object sender, EventArgs e)
         {
-            txtBoxRaza.Focus();
+            comboBoxRazas.Focus();
         }
 
         private void Encargo_Click(object sender, EventArgs e)
         {
-            txtBoxPendiente.Focus();
+            comboBoxEncargos.Focus();
         }
 
         private void Confirmar_Click(object sender, EventArgs e)
         {
-            if (txtBoxNombre.Text == string.Empty || txtBoxPendiente.Text == string.Empty || txtBoxRaza.Text == string.Empty)
+            if (txtBoxNombre.Text == string.Empty || comboBoxEncargos.Text == string.Empty || comboBoxRazas.Text == string.Empty)
             {
                 MessageBox.Show("Necesitas Ingresar todos los datos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -59,12 +58,10 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
             {
                 try
                 {
-                    mascota.ID = idIncremental;
                     mascota.Nombre = txtBoxNombre.Text;
-                    mascota.Raza = txtBoxRaza.Text;
-                    mascota.Encargo = txtBoxPendiente.Text;
+                    mascota.Raza = comboBoxRazas.Text;
+                    mascota.Encargo = comboBoxEncargos.Text;
                     this.DialogResult = DialogResult.OK;
-                    idIncremental++;
                 }
                 catch
                 {

@@ -40,9 +40,9 @@
             Existencia = new Label();
             radioBtnSi = new RadioButton();
             radioBtnNo = new RadioButton();
-            txtBoxTipoMascota = new TextBox();
             txtBoxNombre = new TextBox();
             txtBoxPrecio = new TextBox();
+            comboBoxRazas = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -182,14 +182,6 @@
             radioBtnNo.Text = "No";
             radioBtnNo.UseVisualStyleBackColor = true;
             // 
-            // txtBoxTipoMascota
-            // 
-            txtBoxTipoMascota.Location = new Point(122, 63);
-            txtBoxTipoMascota.Name = "txtBoxTipoMascota";
-            txtBoxTipoMascota.PlaceholderText = "Raza De Mascota";
-            txtBoxTipoMascota.Size = new Size(149, 23);
-            txtBoxTipoMascota.TabIndex = 11;
-            // 
             // txtBoxNombre
             // 
             txtBoxNombre.Location = new Point(122, 95);
@@ -205,6 +197,19 @@
             txtBoxPrecio.PlaceholderText = "Precio De Alimento";
             txtBoxPrecio.Size = new Size(149, 23);
             txtBoxPrecio.TabIndex = 13;
+            txtBoxPrecio.KeyPress += txtBoxPrecio_KeyPress;
+            // 
+            // comboBoxRazas
+            // 
+            comboBoxRazas.Cursor = Cursors.Hand;
+            comboBoxRazas.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxRazas.FormattingEnabled = true;
+            comboBoxRazas.Items.AddRange(new object[] { "Perro", "Gato", "Hamster", "Loro", "Conejo", "Raton", "Iguana" });
+            comboBoxRazas.Location = new Point(122, 63);
+            comboBoxRazas.MaxDropDownItems = 5;
+            comboBoxRazas.Name = "comboBoxRazas";
+            comboBoxRazas.Size = new Size(149, 23);
+            comboBoxRazas.TabIndex = 28;
             // 
             // FormularioListas
             // 
@@ -212,9 +217,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(285, 308);
+            Controls.Add(comboBoxRazas);
             Controls.Add(txtBoxPrecio);
             Controls.Add(txtBoxNombre);
-            Controls.Add(txtBoxTipoMascota);
             Controls.Add(radioBtnNo);
             Controls.Add(radioBtnSi);
             Controls.Add(Existencia);
@@ -245,8 +250,8 @@
         private Label Existencia;
         private RadioButton radioBtnSi;
         private RadioButton radioBtnNo;
-        private TextBox txtBoxTipoMascota;
         private TextBox txtBoxNombre;
         private TextBox txtBoxPrecio;
+        private ComboBox comboBoxRazas;
     }
 }

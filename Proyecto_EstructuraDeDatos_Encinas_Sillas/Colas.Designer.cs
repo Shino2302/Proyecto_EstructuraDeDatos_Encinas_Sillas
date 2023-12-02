@@ -60,6 +60,7 @@
             // Eliminar
             // 
             Eliminar.BackColor = Color.FromArgb(217, 83, 79);
+            Eliminar.Enabled = false;
             Eliminar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             Eliminar.ForeColor = SystemColors.ControlLightLight;
             Eliminar.Location = new Point(21, 207);
@@ -99,6 +100,7 @@
             // Modificar
             // 
             Modificar.BackColor = Color.FromArgb(52, 152, 219);
+            Modificar.Enabled = false;
             Modificar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             Modificar.ForeColor = SystemColors.ControlLightLight;
             Modificar.Location = new Point(21, 138);
@@ -107,6 +109,7 @@
             Modificar.TabIndex = 24;
             Modificar.Text = "Modificar";
             Modificar.UseVisualStyleBackColor = false;
+            Modificar.Click += Modificar_Click;
             // 
             // Agregar
             // 
@@ -184,6 +187,7 @@
             gridContendor.RowTemplate.Height = 25;
             gridContendor.Size = new Size(391, 220);
             gridContendor.TabIndex = 30;
+            gridContendor.SelectionChanged += gridContendor_SelectionChanged;
             // 
             // Colas
             // 
