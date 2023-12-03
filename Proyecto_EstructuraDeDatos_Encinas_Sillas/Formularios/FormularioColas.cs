@@ -23,9 +23,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
         {
             var evento = MessageBox.Show("¿Esta seguro que desea cancelar el agregado?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (evento == DialogResult.Yes)
-            {
                 this.Close();
-            }
         }
 
         private void Titulo_Click(object sender, EventArgs e)

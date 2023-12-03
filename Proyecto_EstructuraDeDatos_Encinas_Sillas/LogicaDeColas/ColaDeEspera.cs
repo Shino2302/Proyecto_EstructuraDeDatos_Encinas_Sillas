@@ -75,6 +75,34 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas
                 return null;
             }
         }
+        public MascotasEnEspera Pop(int idParaEliminar)
+        {
+            try
+            {
+                ColaDeEspera colaAuxiliar = new ColaDeEspera();
+                NodoColas Auxiliar = _ultimo;
+                MascotasEnEspera mascotaLiberada = new MascotasEnEspera();
+                while (Auxiliar.Siguiente != null)
+                {
+                    if (Auxiliar.Mascota.ID == idParaEliminar)
+                        mascotaLiberada = Pop();
+                    else
+                    {
+                        colaAuxiliar.IngresarEnCola(Pop());
+                    }
+                }
+                colaAuxiliar.IngresarEnCola(Pop());
+                while (!colaAuxiliar.ColaVacia())
+                {
+                    IngresarEnCola(colaAuxiliar.Pop());
+                }
+                return mascotaLiberada;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public int MascotasEnCola()
         {
             if (ColaVacia())

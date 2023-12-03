@@ -187,6 +187,7 @@
             gridContendor.RowTemplate.Height = 25;
             gridContendor.Size = new Size(391, 220);
             gridContendor.TabIndex = 30;
+            gridContendor.CellClick += gridContendor_CellClick;
             gridContendor.SelectionChanged += gridContendor_SelectionChanged;
             // 
             // Colas

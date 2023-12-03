@@ -1,6 +1,5 @@
 ﻿using Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios;
 using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas;
-using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeListas;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,10 +48,6 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
                 formulario.Close();
                 Reload();
             }
-            else
-            {
-                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         public void Reload()
         {
@@ -72,9 +67,18 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
-            MascotasEnEspera mascotaLiberada = cola.Pop();
-            MessageBox.Show($"Raza: {mascotaLiberada.Raza}, Nombre: {mascotaLiberada.Nombre} Liberado", "Eliminado De Cola", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            Reload();
+            if(Eliminar.Tag != null && gridContendor.Rows.Count > 1)
+            {
+                MascotasEnEspera mascotaLiberada = cola.Pop(int.Parse(Eliminar.Tag.ToString()));
+                MessageBox.Show($"Raza: {mascotaLiberada.Raza}, Nombre: {mascotaLiberada.Nombre} Liberado", "Eliminado De Cola", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Reload();
+            }
+            else
+            {
+                MascotasEnEspera mascotaLiberada = cola.Pop();
+                MessageBox.Show($"Raza: {mascotaLiberada.Raza}, Nombre: {mascotaLiberada.Nombre} Liberado", "Eliminado De Cola", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Reload();
+            }
         }
 
         private void OrdenarAscendente_Click(object sender, EventArgs e)
@@ -117,6 +121,18 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             if (gridContendor.Rows.Count > 0)
             {
                 Eliminar.Enabled = true;
+            }
+        }
+
+        private void gridContendor_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = this.gridContendor.Rows[e.RowIndex];
+                Modificar.Enabled = true;
+                string idDeFila = filaSeleccionada.Cells["ID"].Value.ToString();
+                Modificar.Tag = idDeFila;
+                Eliminar.Tag = idDeFila;
             }
         }
     }
