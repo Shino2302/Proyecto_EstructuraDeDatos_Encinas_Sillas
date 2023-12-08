@@ -112,7 +112,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
                 e.Handled = true;
 
             // Obtener el texto después de insertar el carácter
-            string newText = 
+            string newText =
                 textBox.Text.Remove(textBox.SelectionStart, textBox.SelectionLength)
                 .Insert(textBox.SelectionStart, e.KeyChar.ToString());
 

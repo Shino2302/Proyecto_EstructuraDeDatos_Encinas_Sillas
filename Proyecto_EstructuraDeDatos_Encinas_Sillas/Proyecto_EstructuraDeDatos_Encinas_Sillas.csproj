@@ -23,9 +23,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="LogicaDeArreglos\" />
-    <Folder Include="LogicaDePilas\" />
-  </ItemGroup>
-
 </Project>

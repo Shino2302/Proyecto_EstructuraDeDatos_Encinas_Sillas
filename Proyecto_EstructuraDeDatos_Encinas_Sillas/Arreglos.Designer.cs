@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Arreglos));
-            Contenedor = new ListBox();
             Titulo = new Label();
             Eliminar = new Button();
             OrdenarDescendente = new Button();
@@ -41,18 +40,11 @@
             panel1 = new Panel();
             CerrarApp = new Button();
             panel3 = new Panel();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // Contenedor
-            // 
-            Contenedor.FormattingEnabled = true;
-            Contenedor.ItemHeight = 15;
-            Contenedor.Location = new Point(467, 67);
-            Contenedor.Name = "Contenedor";
-            Contenedor.Size = new Size(313, 199);
-            Contenedor.TabIndex = 29;
             // 
             // Titulo
             // 
@@ -124,6 +116,7 @@
             Agregar.TabIndex = 23;
             Agregar.Text = "Agregar";
             Agregar.UseVisualStyleBackColor = false;
+            Agregar.Click += Agregar_Click;
             // 
             // MenuPrincipal
             // 
@@ -180,13 +173,22 @@
             panel3.Size = new Size(219, 147);
             panel3.TabIndex = 22;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(451, 67);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(309, 192);
+            dataGridView1.TabIndex = 29;
+            // 
             // Arreglos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(52, 73, 94);
             ClientSize = new Size(800, 450);
-            Controls.Add(Contenedor);
+            Controls.Add(dataGridView1);
             Controls.Add(Titulo);
             Controls.Add(Eliminar);
             Controls.Add(OrdenarDescendente);
@@ -200,13 +202,12 @@
             Text = "Arreglos";
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListBox Contenedor;
         private Label Titulo;
         private Button Eliminar;
         private Button OrdenarDescendente;
@@ -218,5 +219,6 @@
         private Panel panel1;
         private Button CerrarApp;
         private Panel panel3;
+        private DataGridView dataGridView1;
     }
 }

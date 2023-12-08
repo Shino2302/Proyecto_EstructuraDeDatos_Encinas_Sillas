@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pilas));
-            Contenedor = new ListBox();
             Titulo = new Label();
             Eliminar = new Button();
-            OrdenarDescendente = new Button();
-            OrdenarAscendente = new Button();
             Modificar = new Button();
             Agregar = new Button();
             panel3 = new Panel();
@@ -41,18 +38,11 @@
             panel2 = new Panel();
             panel1 = new Panel();
             MenuPrincipal = new Button();
+            gridContenedor = new DataGridView();
             panel3.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridContenedor).BeginInit();
             SuspendLayout();
-            // 
-            // Contenedor
-            // 
-            Contenedor.FormattingEnabled = true;
-            Contenedor.ItemHeight = 15;
-            Contenedor.Location = new Point(467, 67);
-            Contenedor.Name = "Contenedor";
-            Contenedor.Size = new Size(313, 199);
-            Contenedor.TabIndex = 19;
             // 
             // Titulo
             // 
@@ -70,48 +60,26 @@
             Eliminar.BackColor = Color.FromArgb(217, 83, 79);
             Eliminar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             Eliminar.ForeColor = SystemColors.ControlLightLight;
-            Eliminar.Location = new Point(21, 207);
+            Eliminar.Location = new Point(32, 141);
             Eliminar.Name = "Eliminar";
             Eliminar.Size = new Size(133, 52);
             Eliminar.TabIndex = 17;
             Eliminar.Text = "Eliminar";
             Eliminar.UseVisualStyleBackColor = false;
-            // 
-            // OrdenarDescendente
-            // 
-            OrdenarDescendente.BackColor = Color.Gold;
-            OrdenarDescendente.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            OrdenarDescendente.ForeColor = SystemColors.ControlLightLight;
-            OrdenarDescendente.Location = new Point(237, 207);
-            OrdenarDescendente.Name = "OrdenarDescendente";
-            OrdenarDescendente.Size = new Size(133, 52);
-            OrdenarDescendente.TabIndex = 16;
-            OrdenarDescendente.Text = "Ordenar Descendente";
-            OrdenarDescendente.UseVisualStyleBackColor = false;
-            // 
-            // OrdenarAscendente
-            // 
-            OrdenarAscendente.BackColor = Color.Gold;
-            OrdenarAscendente.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            OrdenarAscendente.ForeColor = SystemColors.ControlLightLight;
-            OrdenarAscendente.Location = new Point(237, 138);
-            OrdenarAscendente.Name = "OrdenarAscendente";
-            OrdenarAscendente.Size = new Size(133, 52);
-            OrdenarAscendente.TabIndex = 15;
-            OrdenarAscendente.Text = "Ordenar Ascendente";
-            OrdenarAscendente.UseVisualStyleBackColor = false;
+            Eliminar.Click += Eliminar_Click;
             // 
             // Modificar
             // 
             Modificar.BackColor = Color.FromArgb(52, 152, 219);
             Modificar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             Modificar.ForeColor = SystemColors.ControlLightLight;
-            Modificar.Location = new Point(21, 138);
+            Modificar.Location = new Point(241, 141);
             Modificar.Name = "Modificar";
             Modificar.Size = new Size(133, 52);
             Modificar.TabIndex = 14;
             Modificar.Text = "Modificar";
             Modificar.UseVisualStyleBackColor = false;
+            Modificar.Click += Modificar_Click;
             // 
             // Agregar
             // 
@@ -124,6 +92,7 @@
             Agregar.TabIndex = 13;
             Agregar.Text = "Agregar";
             Agregar.UseVisualStyleBackColor = false;
+            Agregar.Click += Agregar_Click;
             // 
             // panel3
             // 
@@ -180,17 +149,24 @@
             MenuPrincipal.UseVisualStyleBackColor = false;
             MenuPrincipal.Click += MenuPrincipal_Click;
             // 
+            // gridContenedor
+            // 
+            gridContenedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridContenedor.Location = new Point(426, 59);
+            gridContenedor.Name = "gridContenedor";
+            gridContenedor.RowTemplate.Height = 25;
+            gridContenedor.Size = new Size(354, 218);
+            gridContenedor.TabIndex = 19;
+            // 
             // Pilas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(52, 73, 94);
             ClientSize = new Size(800, 450);
-            Controls.Add(Contenedor);
+            Controls.Add(gridContenedor);
             Controls.Add(Titulo);
             Controls.Add(Eliminar);
-            Controls.Add(OrdenarDescendente);
-            Controls.Add(OrdenarAscendente);
             Controls.Add(Modificar);
             Controls.Add(Agregar);
             Controls.Add(panel3);
@@ -200,17 +176,14 @@
             Text = "Pilas";
             panel3.ResumeLayout(false);
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridContenedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListBox Contenedor;
         private Label Titulo;
         private Button Eliminar;
-        private Button OrdenarDescendente;
-        private Button OrdenarAscendente;
         private Button Modificar;
         private Button Agregar;
         private Panel panel3;
@@ -218,5 +191,6 @@
         private Panel panel2;
         private Panel panel1;
         private Button MenuPrincipal;
+        private DataGridView gridContenedor;
     }
 }
